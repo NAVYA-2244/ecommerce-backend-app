@@ -9,19 +9,17 @@ var addUser=(req,res)=>{
      console.log("not");
      res.send("not")
  })
-
 }
 var checkUser=(req,res)=>{
    User.findOne({email:req.body.email,password:req.body.password})
    .then((u)=>{
     console.log(u);
-    res.send(u)
+    if(u==null){res.send("no user found")}
+    else{res.send(u)}
+ 
 }).catch(()=>{
    console.log("no user found");
    res.send("no user found")
 })
-
-
 }
-
 module.exports=[addUser,checkUser]
